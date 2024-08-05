@@ -1,11 +1,19 @@
+
 # Voice Verification Code
 
-[中文](README_zh.md)
+[中文](README_zh.md)  
 [English](README.md)
 
+
+## Introduction
+
+Welcome to the Voice Verification Code repository! This project provides a set of tools to generate and combine voice recordings of individual letters using the `gTTS` (Google Text-to-Speech) library and `pydub`. Whether you need to convert specific text into audio files, combine these files into a single recording, or generate random letters for testing, this script has you covered.
+
+You can use the command-line tool to easily perform these tasks with a few simple commands. For detailed instructions on how to set up and use the tool, see the sections below.
+
+
+## Start by Command-line tool
 This script allows you to generate and combine voice recordings of individual letters. It uses the `gTTS` (Google Text-to-Speech) library to convert letters into MP3 files and `pydub` to combine these MP3 files into a single audio file. Additionally, you can generate random letters for testing purposes.
-
-
 
 ## Usage
 
@@ -17,9 +25,37 @@ Ensure you have the necessary libraries installed. You can install them using pi
 pip install gtts pydub
 ```
 
-### 2. Generate MP3 Files for Each Letter
+### 2. Command-Line Tool
 
-The `generate_letter_speech` function creates an MP3 file for each letter in the provided text. Each file is saved in the `letter_speech` directory.
+This script can be run from the command line to generate and combine voice recordings. You can use the following command-line arguments:
+
+- `--input` to specify the text or length of random letters.
+- `--output` to specify the name of the output MP3 file.
+- `--unique` to generate unique random letters.
+
+#### Example
+
+To generate MP3 files for the text "abcd" and combine them into `voice.mp3`, use:
+
+```bash
+python script.py --input "abcd" --output "voice.mp3"
+```
+
+To generate and combine MP3 files from a random string of 5 letters (with uniqueness), use:
+
+```bash
+python script.py --input 5 --output "random_voice.mp3" --unique
+```
+
+To generate and combine MP3 files from a random string of 5 letters (without uniqueness), omit `--unique`:
+
+```bash
+python script.py --input 5 --output "random_voice.mp3"
+```
+
+### 3. Generate MP3 Files for Each Letter
+
+The `generate_letter_speech` function creates MP3 files for each letter in the provided text. Each file is saved in the `letter_speech` directory.
 
 #### Example
 
@@ -33,7 +69,7 @@ def generate_letter_speech(text):
     
     Args:
         text (str): The text to convert into speech.
-
+    
     Returns:
         None
     """
@@ -63,7 +99,7 @@ generate_letter_speech("cell")
 
 This example generates MP3 files for the letters 'c', 'e', and 'l' and saves them in the `letter_speech` directory.
 
-### 3. Combine MP3 Files into a Single Audio File
+### 4. Combine MP3 Files into a Single Audio File
 
 The `combine_mp3_files` function combines all MP3 files corresponding to the letters in the provided text into a single MP3 file.
 
@@ -73,28 +109,21 @@ The `combine_mp3_files` function combines all MP3 files corresponding to the let
 from pydub import AudioSegment
 import os
 
-def combine_mp3_files(text, output_file='combined.mp3'):
+def combine_mp3_files(text, output_file='combined.mp3', output_dir="letter_speech"):
     """
     Combine MP3 files for each letter into a single MP3 file.
 
     Args:
         text (str): The text whose letters' speech files to combine.
         output_file (str): Path to the output MP3 file.
+        output_dir (str): Directory where the MP3 files are stored.
 
     Returns:
         None
     """
-    output_dir = "letter_speech"
     combined_audio = AudioSegment.empty()
 
-    letter_counts = {}
-
     for letter in text:
-        if letter not in letter_counts:
-            letter_counts[letter] = 0
-        else:
-            letter_counts[letter] += 1
-
         file_path = os.path.join(output_dir, f"{letter}.mp3")
 
         if os.path.exists(file_path):
@@ -112,7 +141,7 @@ combine_mp3_files("celkkaabb", "cell_combined.mp3")
 
 This example combines MP3 files for the letters 'c', 'e', 'l', 'k', 'a', and 'b' into a single file named `cell_combined.mp3`.
 
-### 4. Generate Random Letters
+### 5. Generate Random Letters
 
 The `generate_random_letters` function creates a random string of letters, with options for unique or repeated letters.
 
@@ -173,4 +202,3 @@ combine_mp3_files(letters, "random_combined.mp3")
 ```
 
 This code generates and processes MP3 files for both predefined and random letter sequences.
-
