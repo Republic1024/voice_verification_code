@@ -48,7 +48,7 @@ This project generates MP3 files for individual letters of a given text or rando
 The script can be run from the command line with various options:
 
 ```sh
-python generate_voice.py --input <input_text_or_length> --output <output_file> [--unique]
+python generate_code.py --input <input_text_or_length> --output <output_file> [--unique]
 ```
 
 - `--input` (required): The input text or the length of the random letter string to generate.
@@ -60,19 +60,19 @@ python generate_voice.py --input <input_text_or_length> --output <output_file> [
 #### Generate MP3 for a Given Text
 
 ```sh
-python generate_voice.py --input abcdefg --output /path/to/output/combined.mp3
+python generate_code.py --input abcdefg --output ./output
 ```
 
 #### Generate MP3 for a Random Letter String of Length 5
 
 ```sh
-python generate_voice.py --input 5 --output /path/to/output/combined.mp3
+python generate_code.py --input 5 --output ./output
 ```
 
 #### Generate MP3 for a Unique Random Letter String of Length 5
 
 ```sh
-python generate_voice.py --input 5 --output /path/to/output/combined.mp3 --unique
+python generate_code.py --input 5 --output ./output --unique
 ```
 
 ## Project Structure
@@ -84,7 +84,7 @@ python generate_voice.py --input 5 --output /path/to/output/combined.mp3 --uniqu
 ├── code.ipynb
 ├── letter_speech
 ├── output
-├── script.py
+├── generate_code.py
 └── test.ipynb
 
 2 directories, 5 files

@@ -37,7 +37,7 @@
 可以使用各种选项从命令行运行脚本：
 
 ```sh
-python generate_voice.py --input <input_text_or_length> --output <output_file> [--unique]
+python generate_code.py --input <input_text_or_length> --output <output_file> [--unique]
 ```
 
 - `--input`（必需）：输入文本或生成的随机字母字符串的长度。
@@ -49,19 +49,19 @@ python generate_voice.py --input <input_text_or_length> --output <output_file> [
 #### 为给定文本生成 MP3
 
 ```sh
-python generate_voice.py --input abcdefg --output /path/to/output/combined.mp3
+python generate_code.py --input abcdefg --output ./output
 ```
 
 #### 为长度为 5 的随机字母字符串生成 MP3
 
 ```sh
-python generate_voice.py --input 5 --output /path/to/output/combined.mp3
+python generate_code.py --input 5 --output ./output
 ```
 
 #### 为长度为 5 的唯一随机字母字符串生成 MP3
 
 ```sh
-python generate_voice.py --input 5 --output /path/to/output/combined.mp3 --unique
+python generate_code.py --input 5 --output ./output --unique
 ```
 
 ## 项目结构
@@ -73,7 +73,7 @@ python generate_voice.py --input 5 --output /path/to/output/combined.mp3 --uniqu
 ├── code.ipynb
 ├── letter_speech
 ├── output
-├── script.py
+├── generate_code.py
 └── test.ipynb
 
 2 directories, 5 files
