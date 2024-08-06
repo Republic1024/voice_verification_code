@@ -1,5 +1,8 @@
 # Voice Verification Code 
 
+[中文](README_zh.md)
+[English](README.md)
+
 This project generates MP3 files for individual letters of a given text or random letter strings and combines them into a single MP3 file. It uses the Google Text-to-Speech (gTTS) API and the `pydub` library for audio manipulation.
 
 ## Features
