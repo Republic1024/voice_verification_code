@@ -12,9 +12,6 @@ def generate_letter_speech(text, output_dir="letter_speech"):
     Args:
         text (str): The text to convert into speech.
         output_dir (str): Directory to save the generated MP3 files.
-    
-    Returns:
-        None
     """
     if not text.isalpha():
         raise ValueError("Input text should only contain alphabetic characters.")
@@ -30,7 +27,7 @@ def generate_letter_speech(text, output_dir="letter_speech"):
         else:
             print(f"File already exists: {file_path}")
 
-def combine_mp3_files(text, output_file='combined.mp3', output_dir="letter_speech"):
+def combine_mp3_files(text, output_file, output_dir="letter_speech"):
     """
     Combine MP3 files for each letter into a single MP3 file.
 
@@ -38,9 +35,6 @@ def combine_mp3_files(text, output_file='combined.mp3', output_dir="letter_speec
         text (str): The text whose letters' speech files to combine.
         output_file (str): Path to the output MP3 file.
         output_dir (str): Directory where the MP3 files are stored.
-
-    Returns:
-        None
     """
     combined_audio = AudioSegment.empty()
 
@@ -70,9 +64,8 @@ def generate_random_letters(n, unique=True):
     if unique:
         if n > 26:
             raise ValueError("Cannot generate more than 26 unique letters.")
-        letters = list(string.ascii_lowercase)
-        random.shuffle(letters)
-        return ''.join(letters[:n])
+        letters = random.sample(string.ascii_lowercase, n)
+        return ''.join(letters)
     else:
         return ''.join(random.choices(string.ascii_lowercase, k=n))
 
@@ -81,20 +74,19 @@ def main():
     parser.add_argument('--input', type=str, required=True, help="Input text or random letter length")
     parser.add_argument('--output', type=str, required=True, help="Output combined MP3 file")
     parser.add_argument('--unique', action='store_true', help="Generate unique random letters")
-    
+
     args = parser.parse_args()
 
     if args.input.isdigit():
-        # Generate random letters
         length = int(args.input)
         letters = generate_random_letters(length, unique=args.unique)
         print(f"Generated random letters: {letters}")
-        generate_letter_speech(letters)
-        combine_mp3_files(letters, args.output)
     else:
-        # Process input text
-        generate_letter_speech(args.input)
-        combine_mp3_files(args.input, args.output)
+        letters = args.input
+
+    generate_letter_speech(letters)
+    full_output_path = os.path.join(args.output, f"{letters}.mp3")
+    combine_mp3_files(letters, full_output_path)
 
 if __name__ == "__main__":
     main()
