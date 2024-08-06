@@ -3,7 +3,15 @@
 [中文](README_zh.md)
 [English](README.md)
 
+## Input and Output
+
+- Input: "abcdefg"
+- Output: An MP3 file with the voice reading the input
+
+## Introduction
+
 This project generates MP3 files for individual letters of a given text or random letter strings and combines them into a single MP3 file. It uses the Google Text-to-Speech (gTTS) API and the `pydub` library for audio manipulation.
+
 
 ## Features
 
