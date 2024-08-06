@@ -1,52 +1,93 @@
-# Voice Verification Code
+# 语音验证码生成器
 
-[中文](README_zh.md)  
-[English](README.md)
+该项目生成给定文本或随机字母字符串的每个字母的 MP3 文件，并将它们合并为一个 MP3 文件。它使用 Google Text-to-Speech (gTTS) API 和 `pydub` 库进行音频处理。
 
-## 介绍
+## 功能
 
-欢迎来到 Voice Verification Code 仓库！本项目提供了一套工具，可以使用 `gTTS` (Google Text-to-Speech) 库和 `pydub` 来生成和合并单个字母的语音录音。无论您是需要将特定文本转换为音频文件，还是将这些文件合并为一个单一录音，或者是生成随机字母以进行测试，这个脚本都可以满足您的需求。
+- 为给定文本中的每个字母生成语音 MP3 文件。
+- 将单个字母的 MP3 文件合并为一个 MP3 文件。
+- 生成带有唯一或重复字母选项的随机字母字符串。
 
-您可以使用命令行工具轻松完成这些任务。有关如何设置和使用该工具的详细说明，请参阅以下部分。
+## 要求
 
-## 使用命令行工具开始
+- Python 3.x
+- gTTS (`pip install gtts`)
+- pydub (`pip install pydub`)
+- ffmpeg（用于 pydub 处理 MP3 文件，通过你的包管理器安装，例如在 macOS 上运行 `brew install ffmpeg`）
 
-该脚本允许您生成和合并单个字母的语音录音。它使用 `gTTS` (Google Text-to-Speech) 库将字母转换为 MP3 文件，并使用 `pydub` 将这些 MP3 文件合并为一个音频文件。此外，您还可以生成随机字母以进行测试。
+## 安装
 
-## 使用方法
+1. 克隆仓库：
+    ```sh
+    git clone https://github.com/Republic1024/voice_verification_code.git
+    cd voice_verification_code
+    ```
 
-### 1. 安装所需库
+2. 安装所需的 Python 包：
+    ```sh
+    pip install -r requirements.txt
+    ```
 
-确保您已安装必要的库。可以使用 pip 进行安装：
+3. 确保系统上已安装 `ffmpeg`。
 
-```bash
-pip install gtts pydub
+## 使用
+
+### 命令行接口
+
+可以使用各种选项从命令行运行脚本：
+
+```sh
+python generate_voice.py --input <input_text_or_length> --output <output_file> [--unique]
 ```
 
-### 2. 命令行工具
+- `--input`（必需）：输入文本或生成的随机字母字符串的长度。
+- `--output`（必需）：输出合并的 MP3 文件的路径。
+- `--unique`（可选）：如果设置，则生成唯一的随机字母字符串。
 
-该脚本可以从命令行运行，以生成和合并语音录音。您可以使用以下命令行参数：
+### 示例
 
-- `--input` 指定文本或随机字母的长度。
-- `--output` 指定输出 MP3 文件的名称。
-- `--unique` 生成唯一的随机字母。
+#### 为给定文本生成 MP3
 
-#### 示例
-
-要生成文本 "abcd" 的 MP3 文件并将它们合并到 `voice.mp3` 中，请使用：
-
-```bash
-python script.py --input "abcd" --output "voice.mp3"
+```sh
+python generate_voice.py --input abcdefg --output /path/to/output/combined.mp3
 ```
 
-要生成和合并一个包含5个唯一字母的随机字符串的 MP3 文件，请使用：
+#### 为长度为 5 的随机字母字符串生成 MP3
 
-```bash
-python script.py --input 5 --output "random_voice.mp3" --unique
+```sh
+python generate_voice.py --input 5 --output /path/to/output/combined.mp3
 ```
 
-要生成和合并一个包含5个字母（允许重复）的随机字符串的 MP3 文件，请省略 `--unique`：
+#### 为长度为 5 的唯一随机字母字符串生成 MP3
 
-```bash
-python script.py --input 5 --output "random_voice.mp3"
+```sh
+python generate_voice.py --input 5 --output /path/to/output/combined.mp3 --unique
 ```
+
+## 项目结构
+
+```
+.
+├── README.md
+├── README_zh.md
+├── code.ipynb
+├── letter_speech
+├── output
+├── script.py
+└── test.ipynb
+
+2 directories, 5 files
+```
+
+## 更新日志
+
+### 版本 1.1.1
+
+- 优化代码以减少冗余。
+- 简化 `generate_random_letters` 函数。
+- 改进文件路径处理和输出打印。
+- 更新命令行参数处理，使其更具可读性和可维护性。
+
+---
+
+本项目由 [Republic1024](https://github.com/Republic1024) 维护。

@@ -67,10 +67,16 @@ python generate_voice.py --input 5 --output /path/to/output/combined.mp3 --uniqu
 ## Project Structure
 
 ```
-voice_verification_code/
-├── generate_voice.py
-├── requirements.txt
-└── README.md
+.
+├── README.md
+├── README_zh.md
+├── code.ipynb
+├── letter_speech
+├── output
+├── script.py
+└── test.ipynb
+
+2 directories, 5 files
 ```
 
 ## Changelog
