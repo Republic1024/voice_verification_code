@@ -39,8 +39,6 @@ This project generates MP3 files for individual letters of a given text or rando
     pip install -r requirements.txt
     ```
 
-3. Ensure `ffmpeg` is installed on your system.
-
 ## Usage
 
 ### Command Line Interface
@@ -52,7 +50,7 @@ python generate_code.py --input <input_text_or_length> --output <output_file> [-
 ```
 
 - `--input` (required): The input text or the length of the random letter string to generate.
-- `--output` (required): The path to the output combined MP3 file.
+- `--output` (required): The output path for mp3 file.
 - `--unique` (optional): If set, generate a unique random letter string.
 
 ### Examples
